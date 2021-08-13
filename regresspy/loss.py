@@ -2,6 +2,11 @@ import numpy as np
 from numpy import ndarray
 
 
+def _error(actual: np.ndarray, predicted: np.ndarray):
+    """ Simple error """
+    return actual - predicted
+
+
 def mae(pred: ndarray, label: ndarray) -> ndarray:
     """Returns the mean absolute error between the predicted values and the
     actual values.
@@ -12,11 +17,12 @@ def mae(pred: ndarray, label: ndarray) -> ndarray:
     Returns:
         (ndarray): mean absolute errors.
     """
-    pass
+    """ Mean Absolute Error """
+    return np.mean(np.abs(_error(label, pred)))
 
 
 def sse(pred: ndarray, label: ndarray) -> ndarray:
-    """Returns the residual sum of squared errors between the predicted 
+    """Returns the residual sum of squared errors between the predicted
     values and the actual values.
 
     Args:
@@ -25,11 +31,11 @@ def sse(pred: ndarray, label: ndarray) -> ndarray:
     Returns:
         (ndarray): residual sum of squared errors.
     """
-    pass
+    return np.sum((label-pred)**2)
 
 
 def mse(pred: ndarray, label: ndarray) -> ndarray:
-    """Returns the mean squared errors between the predicted 
+    """Returns the mean squared errors between the predicted
     values and the actual values.
 
     Args:
@@ -38,7 +44,8 @@ def mse(pred: ndarray, label: ndarray) -> ndarray:
     Returns:
         (ndarray): mean squared errors.
     """
-    pass
+    """ Mean Squared Error """
+    return np.mean(np.square(_error(label, pred)))
 
 
 def rmse(pred: ndarray, label: ndarray) -> ndarray:
@@ -51,5 +58,5 @@ def rmse(pred: ndarray, label: ndarray) -> ndarray:
     Returns:
         (ndarray): root mean squared errors.
     """
-    pass
-
+    """ Root Mean Squared Error """
+    return np.sqrt(mse(label, pred))
